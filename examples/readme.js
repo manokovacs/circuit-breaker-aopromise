@@ -14,16 +14,36 @@ remoteService.getData = aop()
 	}) // you may specify options
 	.fn(function (params) {
 		// some remote call to other webservice or DB
-		console.log('x');
 		return Promise.resolve([]);
 	});
 
 remoteService.getData({id: 123})
 	.then(function (result) {
-		console.log('x2');
 		// process
 	})
 	.catch(function (err) {
 		console.log(err);
 		// called if circuit is open
+	});
+
+
+
+
+
+// some remote service call
+var prices;
+
+remoteService.getPrices = aop()
+	.circuitbreaker(
+	{},
+	function(){ return prices; } // cachedPrices will return local cache. It is still better than nothing
+)
+	.fn(function (params) {
+		// remote call to download prices
+	});
+
+remoteService.getPrices()
+	.then(function(result){
+		prices = result; // caching prices
+		// some other task
 	});
