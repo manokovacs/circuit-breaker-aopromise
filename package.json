@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/manokovacs/circuit-breaker-aopromise",
   "dependencies": {
-    "bluebird": "^2.9.34",
+    "bluebird": "^2.9.34"
   },
   "devDependencies": {
     "aopromise": "0.3.1",

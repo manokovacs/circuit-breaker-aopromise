@@ -6,7 +6,7 @@ var sinon = require('sinon');
 var should = require('should');
 var aop = require('aopromise');
 
-describe('circuit-breaker-aopromise.Aspect', function () {
+describe('circuit-breaker-aopromise', function () {
 
 	before(function () {
 		aop.register('circuitbreaker', CircuitBreakerAspect);
@@ -86,6 +86,38 @@ describe('circuit-breaker-aopromise.Aspect', function () {
 //		clock.tick(10);
 //		clock.tick(10);
 //		clock.tick(20000);
+	});
+
+	it('should call fallback if cb is open', function (end) {
+		var fn = aop()
+		.circuitbreaker({
+			timeoutDuration: 3000,
+			errorThreshold: 50,
+			volumeThreshold: 5
+		}, function(){
+			return 'fallback result';
+		})
+			.fn(function (params) {
+				return Promise.reject();
+			});
+
+		Promise.all([
+			fn(),
+			fn(),
+			fn(),
+			fn(),
+			fn(),
+			fn()
+		])
+			.catch(function(){
+			})
+			.delay(5)
+			.then(fn)
+			.then(function(res){
+				res.should.equal('fallback result');
+				end();
+			})
+			.catch(end);
 	});
 
 });
