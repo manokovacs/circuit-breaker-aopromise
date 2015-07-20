@@ -41,9 +41,9 @@ wrapped method. You may pass a fallback method for open circuit if applicable.
 
 ```javascript
 
-// some remote service call
-var prices;
+var prices; // price cache
 
+// remote price api
 remoteService.getPrices = aop()
 	.circuitbreaker(
 	    {}, 
