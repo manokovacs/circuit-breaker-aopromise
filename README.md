@@ -1,7 +1,7 @@
 # circuit-breaker-aopromise
 [Circuit-breaker](http://martinfowler.com/bliki/CircuitBreaker.html) aspect for [aopromise](https://www.npmjs.com/package/aopromise)
  aspect oriented programming toolkit to manage. It [circuit-breaker-js](https://www.npmjs.com/package/circuit-breaker-js)
- as the underlying implementation, extending with timeout and (eventually) fallback feature.
+ as the underlying implementation, extending with timeout and fallback feature.
  
 ## Quick start
 You can use the aspect simply applying it to the wrapped method. You may pass configuration options to the aspect
