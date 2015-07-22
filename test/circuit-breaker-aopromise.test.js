@@ -90,13 +90,13 @@ describe('circuit-breaker-aopromise', function () {
 
 	it('should call fallback if cb is open', function (end) {
 		var fn = aop()
-		.circuitbreaker({
-			timeoutDuration: 3000,
-			errorThreshold: 50,
-			volumeThreshold: 5
-		}, function(){
-			return 'fallback result';
-		})
+			.circuitbreaker({
+				timeoutDuration: 3000,
+				errorThreshold: 50,
+				volumeThreshold: 5
+			}, function () {
+				return 'fallback result';
+			})
 			.fn(function (params) {
 				return Promise.reject();
 			});
@@ -109,15 +109,27 @@ describe('circuit-breaker-aopromise', function () {
 			fn(),
 			fn()
 		])
-			.catch(function(){
+			.catch(function () {
 			})
 			.delay(5)
 			.then(fn)
-			.then(function(res){
+			.then(function (res) {
 				res.should.equal('fallback result');
 				end();
 			})
 			.catch(end);
 	});
+
+	it('should have different defaults if used with withDefaults', function () {
+		var opts = (new (CircuitBreakerAspect.withDefaults({
+			timeoutDuration: 3123,
+			errorThreshold: 123,
+			volumeThreshold: 456
+		})))._getOptions();
+		opts.timeoutDuration.should.equal(3123);
+		opts.errorThreshold.should.equal(123);
+		opts.volumeThreshold.should.equal(456);
+	});
+
 
 });

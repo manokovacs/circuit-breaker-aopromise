@@ -1,6 +1,6 @@
 {
   "name": "circuit-breaker-aopromise",
-  "version": "0.1.0",
+	"version": "0.2.0",
   "description": "Circuit-breaker aspect for Aopromise aspect oriented programming toolkit",
   "main": "lib/circuit-breaker-aopromise.js",
   "scripts": {
@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "aopromise": "0.3.1",
-    "chai": "^3.2.0",
     "mocha": "^2.2.5",
     "should": "^7.0.1",
     "sinon": "^1.15.4"

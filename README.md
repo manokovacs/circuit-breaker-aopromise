@@ -60,3 +60,27 @@ remoteService.getPrices()
     });
     
 ```
+
+## Default options
+You may want to set default options for every aspect added. You can do that by registering the aspect with the _withDefaults_
+converter.
+```javascript
+var aop = require('aopromise');
+var CircuitBreakerAspect = require('circuit-breaker-aopromise').Aspect;
+aop.register(
+    'circuitbreaker', 
+    CircuitBreakerAspect
+        .withDefaults({
+        timeoutDuration: 3000,
+        errorThreshold: 25,
+        volumeThreshold: 5
+    });
+);
+
+var remoteService = {};
+remoteService.getData = aop()
+	.circuitbreaker() // Options above are applied
+	.fn(function (params) {
+		// ...
+	});
+```
