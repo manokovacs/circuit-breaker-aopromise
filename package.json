@@ -1,6 +1,6 @@
 {
   "name": "circuit-breaker-aopromise",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Circuit-breaker aspect for Aopromise aspect oriented programming toolkit",
   "main": "lib/circuit-breaker-aopromise.js",
   "scripts": {
