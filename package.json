@@ -1,6 +1,6 @@
 {
   "name": "circuit-breaker-aopromise",
-	"version": "0.2.0",
+  "version": "0.2.1",
   "description": "Circuit-breaker aspect for Aopromise aspect oriented programming toolkit",
   "main": "lib/circuit-breaker-aopromise.js",
   "scripts": {
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/manokovacs/circuit-breaker-aopromise",
   "dependencies": {
-    "bluebird": "^2.9.34"
+    "bluebird": "^2.9.34",
+    "circuit-breaker-js": "0.0.1"
   },
   "devDependencies": {
     "aopromise": "0.3.1",
